@@ -1,0 +1,17 @@
+{
+  "name": "cool-svg-icon",
+  "version": "1.0.0",
+  "description": "svg-icon",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "moofyu@163.com",
+  "license": "ISC",
+  "dependencies": {
+    "xml-loader": "^1.2.1"
+  }
+}
