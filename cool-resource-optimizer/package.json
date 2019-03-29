@@ -1,6 +1,6 @@
 {
   "name": "cool-resource-optimizer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "static pack and nodeBabel",
   "main": "index.js",
   "dependencies": {

@@ -11,7 +11,7 @@ module.exports = config => {
 			.pipe(gulp.dest('build/node'))
 	})
 
-	gulp.task('babelNode', gulp.series('clean', function(){
+	gulp.task('babelNode', gulp.series('pkView', function(){
 		return gulp
 		.src(
 			[
