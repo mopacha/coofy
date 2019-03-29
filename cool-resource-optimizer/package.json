@@ -1,0 +1,24 @@
+{
+  "name": "cool-resource-optimizer",
+  "version": "1.0.0",
+  "description": "static pack and nodeBabel",
+  "main": "index.js",
+  "dependencies": {
+    "@babel/core": "~7.3.3",
+    "@babel/plugin-transform-runtime": "~7.3.4",
+    "@babel/preset-env": "~7.3.1",
+    "@babel/runtime": "~7.3.4",
+    "gulp": "^4.0.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-clean": "^0.4.0",
+    "gulp-clean-css": "^4.0.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-rev-all": "^1.0.0",
+    "gulp-terser": "^1.1.7"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "moofyu@163.com",
+  "license": "ISC"
+}
