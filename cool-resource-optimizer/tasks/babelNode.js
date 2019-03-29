@@ -11,7 +11,16 @@ module.exports = config => {
 			.pipe(gulp.dest('build/node'))
 	})
 
-	gulp.task('babelNode', gulp.series('pkView', function(){
+	gulp.task('copyConfig', function() {
+		return gulp
+		.src(['config/**'], {
+			base: './'
+		})
+		.pipe(gulp.dest('build/node'))
+	})
+
+
+	gulp.task('babelNode', gulp.series(gulp.parallel('pkView', 'copyConfig'), function(){
 		return gulp
 		.src(
 			[
