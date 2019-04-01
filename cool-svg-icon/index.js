@@ -1,1 +1,1 @@
-require('./Icon.vue')
+require('./Icon')
