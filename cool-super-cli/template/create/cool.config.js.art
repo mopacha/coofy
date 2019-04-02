@@ -1,0 +1,11 @@
+module.exports = {
+  preset: '<%= preset %>',
+  webpack: function (config) {
+    config.entry['<%= entryName %>'] = '<%= entryFilePath %>'
+    return config
+  },
+  devServer: {
+    hot: true,
+    port: <%= devServerPort %>
+  }
+}

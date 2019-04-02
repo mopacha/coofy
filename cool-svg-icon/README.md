@@ -1,6 +1,6 @@
 ### 1. import svg-icon in your app.js
 ```
-import Icon from 'cool-svg-icon';
+import Icon from 'cool-svg-icon/Icon';
 
 Vue.component('icon', Icon);  
 ```
