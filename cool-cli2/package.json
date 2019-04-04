@@ -1,6 +1,6 @@
 {
-	"name": "cool-super-cli",
-	"version": "1.0.2",
+	"name": "cool-cli2",
+	"version": "1.0.3",
 	"description": "",
 	"main": "index.js",
 	"dependencies": {

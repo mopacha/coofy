@@ -47,7 +47,7 @@ function getCoolConfig (coolConfigPath, env) {
 }
 
 // 定义版本和参数选项
-program.version('2.0.2', '-v, --version').on('--help', () => printLogo())
+program.version('1.0.3', '-v, --version').on('--help', () => printLogo())
 
 program
 	.command('start')
