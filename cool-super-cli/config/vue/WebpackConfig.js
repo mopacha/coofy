@@ -20,8 +20,6 @@ function srcPath (dir) {
   return path.join(process.cwd(), './src', dir)
 }
 
-console.log(srcPath(''))
-
 exports._default = function (env) {
   env = env || 'development'
 

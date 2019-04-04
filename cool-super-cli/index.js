@@ -47,12 +47,14 @@ function getCoolConfig (coolConfigPath, env) {
 }
 
 // 定义版本和参数选项
-program.version('2.0.0', '-v, --version').on('--help', () => printLogo())
+program.version('2.0.2', '-v, --version').on('--help', () => printLogo())
 
 program
-  .command('start')
+	.command('start')
+	.description('start running your project')
   .option('-c --config [config]', 'cool配置文件', './cool.config.js')
   .action(cmd => {
+		printLogo()
     debug('cool start')
     const coolConfig = getCoolConfig(cmd.config, 'development')
     WebpackConfig.pkDevelopment(coolConfig)
@@ -74,9 +76,11 @@ program
   })
 
 program
-  .command('build')
+	.command('build')
+	.description('start building your project')
   .option('-c --config [config]', 'cool配置文件', './cool.config.js')
   .action(function (cmd) {
+		printLogo()
     const coolConfig = getCoolConfig(cmd.config, 'production')
     WebpackConfig.pkProduction(coolConfig)
 
