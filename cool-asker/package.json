@@ -1,5 +1,5 @@
 {
-  "name": "cool-asker",
+  "name": "@coolfy/cool-asker",
   "version": "1.0.0",
   "description": "封装request 提供统一API",
   "main": "index.js",

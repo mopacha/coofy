@@ -1,5 +1,5 @@
 {
-  "name": "cool-env",
+  "name": "@coolfy/cool-env",
   "version": "1.0.0",
   "description": "envJson",
   "main": "index.js",
