@@ -30,6 +30,7 @@ function requireWepackConfig (preset) {
   WebpackConfig = require('./config/' + preset + '/WebpackConfig')
 }
 
+
 function getCoolConfig (coolConfigPath, env) {
   let config
   try {
@@ -47,22 +48,17 @@ function getCoolConfig (coolConfigPath, env) {
 }
 
 // 定义版本和参数选项
-program.version('1.0.3', '-v, --version').on('--help', () => printLogo())
-
+program.version('0.0.1', '-v, --version').on('--help', () => printLogo())
 program
 	.command('start')
-	.description('start running your project')
   .option('-c --config [config]', 'cool配置文件', './cool.config.js')
   .action(cmd => {
 		printLogo()
     debug('cool start')
     const coolConfig = getCoolConfig(cmd.config, 'development')
     WebpackConfig.pkDevelopment(coolConfig)
-
     console.log(`DevServer on http://127.0.0.1:${coolConfig.devServer.port}`)
-
     const compiler = webpack(coolConfig.webpackConfig)
-
     const server = new WebpackDevServer(compiler, {
       stats: statOptions,
       hot: coolConfig.devServer.hot,
@@ -77,13 +73,11 @@ program
 
 program
 	.command('build')
-	.description('start building your project')
   .option('-c --config [config]', 'cool配置文件', './cool.config.js')
   .action(function (cmd) {
 		printLogo()
     const coolConfig = getCoolConfig(cmd.config, 'production')
     WebpackConfig.pkProduction(coolConfig)
-
     webpack(coolConfig.webpackConfig, function (err, stat) {
       if (err) {
         console.log(err)
