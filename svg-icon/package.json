@@ -1,14 +1,17 @@
 {
-  "name": "@coolfy/cool-env",
+  "name": "@coofy/svg-icon",
   "version": "1.0.0",
-  "description": "envJson",
+  "description": "svg-icon",
   "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "moofyu@163.com",
   "license": "ISC",
   "dependencies": {
-    "log4js": "^4.1.0"
+    "xml-loader": "^1.2.1"
   }
 }

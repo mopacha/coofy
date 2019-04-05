@@ -1,5 +1,5 @@
 {
-  "name": "@coolfy/cool-cli",
+  "name": "@coofy/cool-cli",
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {

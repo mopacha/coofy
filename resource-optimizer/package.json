@@ -1,5 +1,5 @@
 {
-  "name": "@coolfy/cool-resource-optimizer",
+  "name": "@coofy/resource-optimizer",
   "version": "1.0.0",
   "description": "static pack and nodeBabel",
   "main": "index.js",
