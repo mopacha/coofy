@@ -1,0 +1,23 @@
+{
+  "name": "@coofy/koafy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "dependencies": {
+    "art-template": "^4.13.2",
+    "chalk": "^2.4.2",
+    "config": "^3.0.1",
+    "figlet": "^1.2.1",
+    "ip": "^1.1.5",
+    "koa": "^2.7.0",
+    "koa-art-template": "^1.1.1",
+    "koa-body": "^4.1.0",
+    "koa-router": "^7.4.0",
+    "log4js": "^4.0.2"
+  },
+ "license": "ISC"
+}
