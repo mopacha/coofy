@@ -1,5 +1,5 @@
 const log4js = require('log4js')
-const config = require('config').log4js
+const config = require('@coofy/config').log4js
 const methods = ['trace', 'debug', 'info', 'warn', 'error', 'fatal', 'mark']
 const access = require('./access')
 
