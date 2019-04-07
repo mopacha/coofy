@@ -7,7 +7,8 @@ module.exports = (appConfig)=> {
 	mi.logger(app)
 	mi.koaBody(app)
 	mi.view(app, appConfig)
+	//透传
+	mi.proxy(app, appConfig)
 	mi.router(app)
-	
 	return app
 }
