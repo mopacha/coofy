@@ -24,12 +24,12 @@ export default {
     h: [Number, String]
   },
   computed: {
-    clazz () {
+    clazz() {
       return {
         'svg-icon': true
       }
     },
-    icon () {
+    icon() {
       let xml = require(`!xml-loader!@static/assets/svg/${this.name}.svg`)
       const t = xml.svg.$.viewBox.split(' ')
       // console.info(`src/svg/${this.name}.svg has been loaded`);
@@ -39,7 +39,7 @@ export default {
         paths: SVGtoArray(xml.svg)
       }
     },
-    box () {
+    box() {
       return `0 0 ${this.icon.width} ${this.icon.height}`
     }
   },

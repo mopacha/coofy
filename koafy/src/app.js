@@ -1,7 +1,7 @@
 const koa = require('koa')
 const mi = require('./middleware/index')
 
-module.exports = (appConfig)=> {
+module.exports = appConfig => {
 	const app = new koa()
 	mi.setContext(app)
 	mi.logger(app)
