@@ -1,7 +1,7 @@
 
 
 let logger = require('../utils/logger')('koafy-run')
-logger.level = 'info'
+logger.level = 'debug'
 
 module.exports = async app => {
   app.context.logger = logger
