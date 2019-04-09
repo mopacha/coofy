@@ -18,7 +18,7 @@ function printLogo () {
   console.log(
     chalk.blue(
       figlet.textSync('cooL', {
-        font: 'larry 3d', // or slant
+        font: 'slant', // or larry 3d 
         horizontalLayout: 'full',
         verticalLayout: 'full'
       })
@@ -48,16 +48,15 @@ function getCoolConfig (coolConfigPath, env) {
 }
 
 // 定义版本和参数选项
-program.version('0.0.1', '-v, --version').on('--help', () => printLogo())
+program.version('1.0.1', '-v, --version').on('--help', () => printLogo())
 program
 	.command('start')
   .option('-c --config [config]', 'cool配置文件', './cool.config.js')
   .action(cmd => {
-		printLogo()
     debug('cool start')
     const coolConfig = getCoolConfig(cmd.config, 'development')
     WebpackConfig.pkDevelopment(coolConfig)
-    console.log(`DevServer on http://127.0.0.1:${coolConfig.devServer.port}`)
+		console.log(`DevServer on http://127.0.0.1:${coolConfig.devServer.port}`)
     const compiler = webpack(coolConfig.webpackConfig)
     const server = new WebpackDevServer(compiler, {
       stats: statOptions,
@@ -68,14 +67,14 @@ program
       },
       disableHostCheck: true
     })
-    server.listen(coolConfig.devServer.port, '127.0.0.1', function () {})
+    server.listen(coolConfig.devServer.port, '127.0.0.1', ()=> {
+		})
   })
 
 program
 	.command('build')
   .option('-c --config [config]', 'cool配置文件', './cool.config.js')
   .action(function (cmd) {
-		printLogo()
     const coolConfig = getCoolConfig(cmd.config, 'production')
     WebpackConfig.pkProduction(coolConfig)
     webpack(coolConfig.webpackConfig, function (err, stat) {
