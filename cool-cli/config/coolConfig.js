@@ -18,7 +18,7 @@ const getCoolConfig = env=> {
   try {
     config = require(path.join(process.cwd(), './cool.config.js'))
   } catch (e) {
-    console.log('读取cool.config.js 失败')
+    console.log('read cool.config.js fail')
     config = {}
   }
 	config = Object.assign(getDefault(), config)
