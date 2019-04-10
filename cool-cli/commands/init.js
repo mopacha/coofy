@@ -3,8 +3,6 @@ const download = require('@coofy/download-git')
 const ora = require('ora')
 const symbols = require('log-symbols')
 const chalk = require('chalk')
-const os = require('os')
-const path = require('path')
 const fs = require('fs')
 
 const template = require('art-template')
