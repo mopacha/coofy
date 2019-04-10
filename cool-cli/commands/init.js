@@ -7,12 +7,14 @@ const os = require('os')
 const path = require('path')
 const fs = require('fs')
 
+const template = require('art-template')
+
 const init = () => {
 	inquirer
 		.prompt([
 			{
 				type: 'input',
-				name: 'projectName',
+				name: 'name',
 				message: 'Please enter the projectName.',
 				default: 'cool-web',
 				validate: function(input) {
@@ -39,6 +41,18 @@ const init = () => {
 			},
 			{
 				type: 'input',
+				name: 'staticServerPort',
+				message: 'Please enter the  staticServerPort.',
+				default: 8686
+			},
+			{
+				type: 'input',
+				name: 'nodeServerPort',
+				message: 'Please enter the  nodeServerPort.',
+				default: 3000
+			},
+			{
+				type: 'input',
 				name: 'description',
 				message: 'Please enter the project description.'
 			}
@@ -46,15 +60,39 @@ const init = () => {
 		.then(answers => {
 			const spinner = ora('Load init tempalte...')
 			spinner.start()
-			const projectName = answers.projectName
+			const { name, description, staticServerPort, nodeServerPort } = answers
 
-			download('mopacha/koa-vue-web#v1.0.0', projectName, err => {
+			const staticConextPath = `${name.replace(/-web$/, '') + '-static'}`
+
+			download('mopacha/koa-vue-web#v1.0.0', name, err => {
 				if (err) {
 					spinner.fail()
 					console.log(symbols.error, chalk.red(err))
 				} else {
 					spinner.succeed()
 
+					const meta = {
+						name,
+						description,
+						staticServerPort,
+						nodeServerPort,
+						staticConextPath
+					}
+
+					const root = `${process.cwd()}/${name}`
+
+					const rewriteFiles = [
+						`${root}/config/development.js`,
+						`${root}/config/env-config.json`,
+						`${root}/cool.config.js`,
+						`${root}/process.json`,
+						`${root}/package.json`
+					]
+
+					rewriteFiles.map(file => {
+						const result = template(file, meta)
+						fs.writeFileSync(file, result)
+					})
 					console.log(symbols.success, chalk.green('Project init success'))
 				}
 			})
