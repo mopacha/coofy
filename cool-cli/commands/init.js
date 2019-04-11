@@ -1,5 +1,5 @@
 const inquirer = require('inquirer')
-const download = require('@coofy/download-git')
+const download = require('@coofy/load-git')
 const ora = require('ora')
 const symbols = require('log-symbols')
 const chalk = require('chalk')
