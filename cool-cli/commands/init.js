@@ -138,6 +138,7 @@ function rewriteFiles(meta) {
 	const rewriteFiles = [
 		`${root}/config/development.js`,
 		`${root}/config/env-config.json`,
+		`${root}/config/log4js.js`,
 		`${root}/cool.config.js`,
 		`${root}/process.json`,
 		`${root}/package.json`
