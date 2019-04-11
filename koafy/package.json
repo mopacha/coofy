@@ -12,7 +12,7 @@
     "chalk": "^2.4.2",
     "@coofy/matcher": "^1.0.0",
     "@coofy/config": "^1.0.0",
-    "@coofy/asker": "^1.0.0",
+    "@coofy/asker": "^1.0.1",
     "figlet": "^1.2.1",
     "ip": "^1.1.5",
     "koa": "^2.7.0",
