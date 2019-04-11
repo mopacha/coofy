@@ -8,13 +8,11 @@ const TerserPlugin = require('terser-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const SpeedMeasurePlugin = require('speed-measure-webpack-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const Smp = new SpeedMeasurePlugin()
 const BabelConfig = require('./JsBabel')
+const staticPublicPath = require(path.join(process.cwd(), './src/app.config')).staticUrl
 
-const staticPublicPath = require(path.join(process.cwd(), './src/app.config'))
-  .staticAssets.publicPath
 
 function srcPath (dir) {
   return path.join(process.cwd(), './src', dir)
@@ -246,6 +244,6 @@ exports.pkDevelopment = function (coolConfig) {
 }
 
 exports.pkProduction = function (coolConfig) {
-  const config = coolConfig.webpackConfi
+  const config = coolConfig.webpackConfig
   return config
 }

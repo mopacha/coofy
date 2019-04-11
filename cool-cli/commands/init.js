@@ -11,15 +11,51 @@ const init = () => {
 	inquirer
 		.prompt([
 			{
+				type: 'list',
+				name: 'config',
+				message: 'Config the existed project only ?',
+				default: 'no',
+				choices: ['yes', 'no'],
+				validate: input => {
+					if (input.lowerCase !== 'yes' && input.lowerCase !== 'no') {
+						return console.log(symbols.error, chalk.red('Please input yes/no !.'))
+					} else {
+						return true
+					}
+				}
+			},
+			{
 				type: 'input',
-				name: 'name',
-				message: 'Please enter the projectName.',
-				default: 'cool-web',
+				name: 'cname',
+				message: 'Please enter the config project name.',
+				when: function(answers) {
+					return answers.config === 'yes'
+				},
 				validate: function(input) {
 					if (!input.length > 0) {
 						return console.log(
 							symbols.error,
-							chalk.red('Please enter the projectName.')
+							chalk.red('Please enter the config project name.')
+						)
+					} else {
+						return true
+					}
+				}
+			},
+
+			{
+				type: 'input',
+				name: 'name',
+				message: 'Please enter the new project name.',
+				default: 'cool-web',
+				when: function(answers) {
+					return answers.config === 'no'
+				},
+				validate: function(input) {
+					if (!input.length > 0) {
+						return console.log(
+							symbols.error,
+							chalk.red('Please enter the project name.')
 						)
 					} else if (fs.existsSync(input)) {
 						return console.log(
@@ -35,7 +71,7 @@ const init = () => {
 				type: 'list',
 				name: 'preset',
 				message: 'Which preset do you want ?',
-				choices: ['VUE', 'IE8']
+				choices: ['Vue-PC', 'Vue-H5', 'React']
 			},
 			{
 				type: 'input',
@@ -56,45 +92,62 @@ const init = () => {
 			}
 		])
 		.then(answers => {
-			const spinner = ora('Load init tempalte...')
+			const spinner = ora(
+				`${answers.config === 'no' ? 'Load tempalte' : 'Config project'}`
+			)
 			spinner.start()
-			const { name, description, staticServerPort, nodeServerPort } = answers
+			const {
+				config,
+				description,
+				staticServerPort,
+				nodeServerPort
+			} = answers
+
+			const name = answers.config === 'no' ? answers.name : answers.cname
 
 			const staticConextPath = `${name.replace(/-web$/, '') + '-static'}`
 
-			download('mopacha/koa-vue-web#v1.0.0', name, err => {
-				if (err) {
-					spinner.fail()
-					console.log(symbols.error, chalk.red(err))
-				} else {
-					spinner.succeed()
+			const meta = {
+				name,
+				description,
+				staticServerPort,
+				nodeServerPort,
+				staticConextPath
+			}
 
-					const meta = {
-						name,
-						description,
-						staticServerPort,
-						nodeServerPort,
-						staticConextPath
+			if (config === 'yes') {
+				spinner.succeed()
+				rewriteFiles(meta)
+			} else {
+				download('mopacha/koa-vue-web#v1.0.0', name, err => {
+					if (err) {
+						spinner.fail()
+						console.log(symbols.error, chalk.red(err))
+					} else {
+						spinner.succeed()
+						rewriteFiles(meta)
 					}
-
-					const root = `${process.cwd()}/${name}`
-
-					const rewriteFiles = [
-						`${root}/config/development.js`,
-						`${root}/config/env-config.json`,
-						`${root}/cool.config.js`,
-						`${root}/process.json`,
-						`${root}/package.json`
-					]
-
-					rewriteFiles.map(file => {
-						const result = template(file, meta)
-						fs.writeFileSync(file, result)
-					})
-					console.log(symbols.success, chalk.green('Project init success'))
-				}
-			})
+				})
+			}
 		})
+}
+
+function rewriteFiles(meta) {
+	const root = `${process.cwd()}/${meta.name}`
+
+	const rewriteFiles = [
+		`${root}/config/development.js`,
+		`${root}/config/env-config.json`,
+		`${root}/cool.config.js`,
+		`${root}/process.json`,
+		`${root}/package.json`
+	]
+
+	rewriteFiles.map(file => {
+		const result = template(file, meta)
+		fs.writeFileSync(file, result)
+	})
+	console.log(symbols.success, chalk.green('Project init success'))
 }
 
 init()
