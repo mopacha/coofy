@@ -177,7 +177,7 @@ exports._default = function(env) {
 				elementUI: {
 					name: 'chunk-elementUI',
 					priority: 20, // 权重要大于 libs 和 app 不然会被打包进 libs 或者 app
-					test: /[\\/]node_modules[\\/](_element-ui@2.7.2@element-ui | element-ui)[\\/]/,
+					test: /[\\/]node_modules[\\/](_element-ui@2.7.2@element-ui|element-ui)[\\/]/,
 					chunks: 'initial'
 				},
 				commons: {
