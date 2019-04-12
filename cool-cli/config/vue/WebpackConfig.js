@@ -224,7 +224,22 @@ exports.development = function() {
 }
 
 exports.pkDevelopment = function(coolConfig) {
-	//	const nodeModulesPath = require('../../utils/tools').resolveNodeModulesPath()
+	// delete sockjs-node/info?t=1555055861466 on network
+	const nodeModulesPath = require('../../utils/tools').resolveNodeModulesPath()
+	const sockjsFile = nodeModulesPath + `sockjs-client/dist/sockjs.js`
+	const fs = require('fs')
+
+	fs.readFile(sockjsFile, 'utf8', function(err, data) {
+		if (err) {
+			return console.log(err)
+		}
+		const result = data.replace('self.xhr.send(payload);', '')
+		fs.writeFile(sockjsFile, result, 'utf8', function(err) {
+			if (err) return console.log(err)
+		})
+	})
+
+	//const nodeModulesPath = require('../../utils/tools').resolveNodeModulesPath()
 	//var preEntrys = [nodeModulesPath + 'vconsole/dist/vconsole.min.js']
 	// if (coolConfig.devServer.hot) {
 	// 	preEntrys = preEntrys.concat([
@@ -259,7 +274,6 @@ exports.pkDevelopment = function(coolConfig) {
 			})
 		)
 	})
-
 	// if (coolConfig.devServer.hot) {
 	// 	config.plugins.push(new webpack.HotModuleReplacementPlugin())
 	// }
