@@ -6,10 +6,10 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 const TimeFixPlugin = require('time-fix-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const SpeedMeasurePlugin = require('speed-measure-webpack-plugin')
+//const SpeedMeasurePlugin = require('speed-measure-webpack-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-const Smp = new SpeedMeasurePlugin()
+// const Smp = new SpeedMeasurePlugin()
 const BabelConfig = require('./JsBabel')
 const staticPublicPath = require(path.join(process.cwd(), './src/app.config'))
 	.staticUrl
@@ -129,7 +129,6 @@ exports._default = function(env) {
 			'@': srcPath('')
 		}
 	}
-
 	const optimization = {
 		minimizer: [
 			// 自定义js优化配置，
@@ -220,10 +219,23 @@ exports.development = function() {
 		new TimeFixPlugin()
 		// new BundleAnalyzerPlugin()
 	])
-	return Smp.wrap(config)
+	return config
+	//return Smp.wrap(config)
 }
 
 exports.pkDevelopment = function(coolConfig) {
+	//	const nodeModulesPath = require('../../utils/tools').resolveNodeModulesPath()
+	//var preEntrys = [nodeModulesPath + 'vconsole/dist/vconsole.min.js']
+	// if (coolConfig.devServer.hot) {
+	// 	preEntrys = preEntrys.concat([
+	// 		nodeModulesPath +
+	// 			'webpack-dev-server/client?http://localhost:' +
+	// 			coolConfig.devServer.port +
+	// 			'/',
+	// 		nodeModulesPath + 'webpack/hot/dev-server'
+	// 	])
+	// }
+
 	const devServerConfig = coolConfig.devServer
 	const config = coolConfig.webpackConfig
 
@@ -232,6 +244,12 @@ exports.pkDevelopment = function(coolConfig) {
 		: path.join(__dirname, '../../template/index.html')
 
 	Object.keys(config.entry).forEach(function(entry) {
+		// if (Array.isArray(config.entry[entry])) {
+		// 	config.entry[entry].unshift.apply(config.entry[entry], preEntrys)
+		// } else {
+		// 	config.entry[entry] = preEntrys.concat(config.entry[entry])
+		// }
+
 		config.plugins.push(
 			new HtmlWebpackPlugin({
 				template: template,
@@ -241,6 +259,10 @@ exports.pkDevelopment = function(coolConfig) {
 			})
 		)
 	})
+
+	// if (coolConfig.devServer.hot) {
+	// 	config.plugins.push(new webpack.HotModuleReplacementPlugin())
+	// }
 }
 
 exports.pkProduction = function(coolConfig) {

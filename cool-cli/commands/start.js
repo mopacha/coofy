@@ -16,12 +16,12 @@ const start = () => {
 	console.log(`DevServer on http://127.0.0.1:${coolConfig.devServer.port}`)
 	const compiler = webpack(coolConfig.webpackConfig)
 	const server = new WebpackDevServer(compiler, {
+		publicPath: coolConfig.devServer.publicPath,
 		stats: {
 			colors: true,
 			chunks: false
 		},
 		hot: coolConfig.devServer.hot,
-		publicPath: coolConfig.devServer.publicPath,
 		headers: {
 			'Access-Control-Allow-Origin': '*'
 		},
