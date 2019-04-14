@@ -8,7 +8,7 @@ var nodePath = require('path');
  */
 
 
-module.exports.default = module.exports = function readDirSync(path, callback) {
+module.exports = function readDirSync(path, callback) {
   var pa = fs.readdirSync(path);
   pa.forEach(function (ele, index) {
     const info = fs.statSync(path + '/' + ele);

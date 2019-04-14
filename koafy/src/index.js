@@ -18,7 +18,9 @@ const getConfig = filePath => {
 const create = options => {
 	const coolConfig = require('./config/coolConfig')
 	const appConfig = getConfig(`${options.baseDir}/${coolConfig.appConfigPath}`)
-	const app = require('./app')(appConfig)
+	const routesPath = path.join(process.cwd(), `${options.baseDir}/${coolConfig.controller}`)
+	const app = require('./app')(appConfig, routesPath)
+	
 	return app
 }
 

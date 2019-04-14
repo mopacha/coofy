@@ -3,7 +3,7 @@ var nodePath = require('path')
 /**
  * 遍历文件,文件夹
  */
-module.exports.default = module.exports = function readDirSync (path, callback) {
+module.exports = function readDirSync (path, callback) {
   var pa = fs.readdirSync(path)
   pa.forEach(function (ele, index) {
     const info = fs.statSync(path + '/' + ele)

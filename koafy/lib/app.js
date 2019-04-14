@@ -4,7 +4,7 @@ const koa = require('koa');
 
 const mi = require('./middleware/index');
 
-module.exports = appConfig => {
+module.exports = (appConfig, routesPath) => {
   const app = new koa();
   mi.setContext(app);
   mi.logger(app);
@@ -12,6 +12,6 @@ module.exports = appConfig => {
   mi.view(app, appConfig); //透传
 
   mi.proxy(app, appConfig);
-  mi.router(app);
+  mi.router(app, routesPath);
   return app;
 };

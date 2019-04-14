@@ -1,34 +1,8 @@
-const path = require('path')
-const koaRouter = require('koa-router')
-const readDirSync = require('../utils/read-dirsync')
-let allPartRouter = []
+import { Route } from '../decorator/router'
 
-module.exports = async app => {
-  const basename = path.basename(module.filename)
-  const router = koaRouter({
-    prefix: '/'
-  })
+export const router = (app, routesPath) => {
+  const instance = new Route(app, routesPath)
 
-  // 遍历所有路由 
-  readDirSync(path.join(process.cwd(), './src/router'), function (
-    fileName,
-    isDirectory,
-    dirPath
-  ) {
-    const isJsFile =
-			dirPath.indexOf('.') !== 0 &&
-			fileName !== basename &&
-			dirPath.slice(-3) === '.js'
-    if (!isDirectory && isJsFile) {
-      const partRouter = require(dirPath)
-      allPartRouter = allPartRouter.concat(partRouter)
-    }
-  })
-
-  allPartRouter.forEach(function (item) {
-    router[item.method || 'get'](`${item.path}`, item.ctrl)
-  })
-
-  app.use(router.routes(), router.allowedMethods())
+  instance.init()
   app.context.logger.info('router initialized')
 }
