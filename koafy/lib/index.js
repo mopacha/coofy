@@ -1,5 +1,7 @@
 "use strict";
 
+var _router = require("./decorator/router");
+
 const logger = require('./utils/logger')('koafy/index.js');
 
 const path = require('path');
@@ -45,6 +47,17 @@ const start = (options = {
   });
 };
 
+const router = () => {
+  return {
+    Controller: _router.Controller,
+    Get: _router.Get,
+    Post: _router.Post,
+    Put: _router.Put,
+    Delete: _router.Delete
+  };
+};
+
 module.exports = {
-  start
+  start,
+  router
 };

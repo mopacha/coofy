@@ -3,6 +3,15 @@ const path = require('path')
 const address = require('ip').address()
 const printLogo = require('./utils/printLogo')
 
+import {
+	Controller,
+	Get,
+	Post,
+	Put,
+	Delete
+} from './decorator/router'
+
+
 const getConfig = filePath => {
 	logger.info('get config from', filePath)
 	let config
@@ -35,6 +44,16 @@ const start = (options = { baseDir: './src' }) => {
 	})
 }
 
+const router =  () =>{
+	return {
+		Controller,
+		Get,
+		Post,
+		Put,
+		Delete
+	}
+}
 module.exports = {
-	start
+	start,
+	router
 }
