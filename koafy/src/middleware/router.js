@@ -1,8 +1,8 @@
-import { Route } from '../decorator/router'
+const { Route } = require('../decorator/router')
 
-export const router = (app, routesPath) => {
-  const instance = new Route(app, routesPath)
+module.exports = async (app, routesPath) => {
+	const instance = new Route(app, routesPath)
 
-  instance.init()
-  app.context.logger.info('router initialized')
+	instance.init()
+	app.context.logger.info('router initialized')
 }

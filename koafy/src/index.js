@@ -3,15 +3,6 @@ const path = require('path')
 const address = require('ip').address()
 const printLogo = require('./utils/printLogo')
 
-import {
-	Controller,
-	Get,
-	Post,
-	Put,
-	Delete
-} from './decorator/router'
-
-
 const getConfig = filePath => {
 	logger.info('get config from', filePath)
 	let config
@@ -27,9 +18,11 @@ const getConfig = filePath => {
 const create = options => {
 	const coolConfig = require('./config/coolConfig')
 	const appConfig = getConfig(`${options.baseDir}/${coolConfig.appConfigPath}`)
-	const routesPath = path.join(process.cwd(), `${options.baseDir}/${coolConfig.controller}`)
+	const routesPath = path.join(
+		process.cwd(),
+		`${options.baseDir}/${coolConfig.routesPath}`
+	)
 	const app = require('./app')(appConfig, routesPath)
-	
 	return app
 }
 
@@ -44,15 +37,7 @@ const start = (options = { baseDir: './src' }) => {
 	})
 }
 
-const router =  () =>{
-	return {
-		Controller,
-		Get,
-		Post,
-		Put,
-		Delete
-	}
-}
+const router = require('./decorator/router')
 module.exports = {
 	start,
 	router

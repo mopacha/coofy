@@ -1,7 +1,5 @@
 "use strict";
 
-var _router = require("./decorator/router");
-
 const logger = require('./utils/logger')('koafy/index.js');
 
 const path = require('path');
@@ -28,7 +26,7 @@ const create = options => {
   const coolConfig = require('./config/coolConfig');
 
   const appConfig = getConfig(`${options.baseDir}/${coolConfig.appConfigPath}`);
-  const routesPath = path.join(process.cwd(), `${options.baseDir}/${coolConfig.controller}`);
+  const routesPath = path.join(process.cwd(), `${options.baseDir}/${coolConfig.routesPath}`);
 
   const app = require('./app')(appConfig, routesPath);
 
@@ -47,15 +45,7 @@ const start = (options = {
   });
 };
 
-const router = () => {
-  return {
-    Controller: _router.Controller,
-    Get: _router.Get,
-    Post: _router.Post,
-    Put: _router.Put,
-    Delete: _router.Delete
-  };
-};
+const router = require('./decorator/router');
 
 module.exports = {
   start,

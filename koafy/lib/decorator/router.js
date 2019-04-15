@@ -1,31 +1,27 @@
 "use strict";
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Delete = exports.Put = exports.Post = exports.Get = exports.Controller = exports.setRouter = exports.Route = void 0;
+exports.Delete = exports.Put = exports.Post = exports.Get = exports.Controller = exports.Route = void 0;
 
-var _path = require("path");
+const KoaRouter = require('koa-router');
 
-var _koaRouter = _interopRequireDefault(require("koa-router"));
+const glob = require('glob');
 
-var _glob = _interopRequireDefault(require("glob"));
+const R = require('ramda');
 
-var _ramda = _interopRequireDefault(require("ramda"));
+const path = require('path');
 
 const pathPrefix = Symbol('pathPrefix');
 const routeMap = [];
-
-const resolvePath = _ramda.default.unless(_ramda.default.startsWith('/'), _ramda.default.curryN(2, _ramda.default.concat)('/'));
-
-const changeToArr = _ramda.default.unless(_ramda.default.is(Array), _ramda.default.of);
+const resolvePath = R.unless(R.startsWith('/'), R.curryN(2, R.concat)('/'));
+const changeToArr = R.unless(R.is(Array), R.of);
 
 class Route {
   constructor(app, routesPath) {
     this.app = app;
-    this.router = new _koaRouter.default();
+    this.router = new KoaRouter();
     this.routesPath = routesPath;
   }
 
@@ -35,10 +31,10 @@ class Route {
       router,
       routesPath
     } = this;
-
-    _glob.default.sync((0, _path.resolve)(routesPath, './*.js')).forEach(require);
-
-    _ramda.default.forEach(({
+    glob.sync(path.resolve(routesPath, './**/*.js')).map(file => {
+      require(file);
+    });
+    R.forEach(({
       target,
       method,
       path,
@@ -47,7 +43,6 @@ class Route {
       const prefix = resolvePath(target[pathPrefix]);
       router[method](prefix + path, ...callback);
     })(routeMap);
-
     app.use(router.routes());
     app.use(router.allowedMethods());
   }
@@ -66,9 +61,9 @@ const setRouter = method => path => (target, key, descriptor) => {
   return descriptor;
 };
 
-exports.setRouter = setRouter;
-
-const Controller = path => target => target.prototype[pathPrefix] = path;
+const Controller = path => target => {
+  target.prototype[pathPrefix] = path;
+};
 
 exports.Controller = Controller;
 const Get = setRouter('get');
