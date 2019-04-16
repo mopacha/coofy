@@ -182,7 +182,7 @@ exports._default = function(env) {
 				commons: {
 					// test: path.join(process.cwd(), './src/static/public'), // 可自定义拓展你的规则
 					name: `chunk-commons`,
-					minChunks: 2, // 最小共用次数,
+					minChunks: 20000, // 最小共用次数,
 					priority: 5,
 					chunks: 'initial',
 					reuseExistingChunk: false
@@ -190,7 +190,7 @@ exports._default = function(env) {
 			}
 		},
 		runtimeChunk: {
-			name: 'manifest'
+			name: entrypoint => `manifest-${entrypoint.name}`
 		}
 	}
 
@@ -211,8 +211,8 @@ exports.production = function(env) {
 	return config
 }
 
-exports.development = function() {
-	let config = this._default()
+exports.development = function(env) {
+	let config = this._default(env)
 	config.devtool = '#inline-source-map'
 	config.plugins = config.plugins.concat([
 		new webpack.NamedModulesPlugin(),

@@ -1,6 +1,6 @@
 {
 	"name": "@coofy/koafy",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "",
 	"main": "lib/index.js",
 	"scripts": {
@@ -26,10 +26,10 @@
 	"license": "ISC",
 	"devDependencies": {
 		"@babel/cli": "^7.4.3",
-		"@babel/core": "^7.4.3",
-		"@babel/plugin-proposal-decorators": "^7.4.0",
-		"@babel/plugin-transform-runtime": "^7.4.3",
-		"@babel/preset-env": "^7.4.3",
-		"@babel/runtime": "^7.4.3"
+		"@babel/core": "~7.3.3",
+		"@babel/plugin-proposal-decorators": "~7.4.0",
+		"@babel/plugin-transform-runtime": "~7.3.4",
+		"@babel/preset-env": "~7.3.1",
+		"@babel/runtime": "~7.3.4"
 	}
 }
