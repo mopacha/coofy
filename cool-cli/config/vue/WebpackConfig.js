@@ -166,30 +166,30 @@ exports._default = function(env) {
 			})
 		],
 
-		splitChunks: {
-			cacheGroups: {
-				libs: {
-					test: /[\\/]node_modules[\\/]/,
-					name: `chunk-lib`,
-					priority: 10,
-					chunks: 'initial' //  只打包初始时依赖的第三方
-				},
-				elementUI: {
-					name: 'chunk-ui',
-					priority: 20, // 权重要大于 libs 和 app 不然会被打包进 libs 或者 app
-					test: /[\\/]node_modules[\\/](_element-ui@2.7.2@element-ui|element-ui)[\\/]/,
-					chunks: 'initial'
-				},
-				commons: {
-					// test: path.join(process.cwd(), './src/static/public'), // 可自定义拓展你的规则
-					name: `chunk-commons`,
-					minChunks: 20000, // 最小共用次数,
-					priority: 5,
-					chunks: 'initial',
-					reuseExistingChunk: false
-				}
-			}
-		},
+		// splitChunks: {
+		// 	cacheGroups: {
+		// 		libs: {
+		// 			test: /[\\/]node_modules[\\/]/,
+		// 			name: `chunk-lib`,
+		// 			priority: 10,
+		// 			chunks: 'initial' //  只打包初始时依赖的第三方
+		// 		},
+		// 		elementUI: {
+		// 			name: `chunk-ui`,
+		// 			priority: 20, // 权重要大于 libs 和 app 不然会被打包进 libs 或者 app
+		// 			test: /[\\/]node_modules[\\/](_element-ui@2.7.2@element-ui|element-ui)[\\/]/,
+		// 			chunks: 'initial'
+		// 		},
+		// 		commons: {
+		// 			// test: path.join(process.cwd(), './src/static/public'), // 可自定义拓展你的规则
+		// 			name: `chunk-commons`,
+		// 			minChunks: 20000, // 最小共用次数,
+		// 			priority: 5,
+		// 			chunks: 'initial',
+		// 			reuseExistingChunk: false
+		// 		}
+		// 	}
+		// },
 		runtimeChunk: {
 			name: entrypoint => `runtime-${entrypoint.name}`
 		}
