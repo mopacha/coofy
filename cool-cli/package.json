@@ -1,6 +1,6 @@
 {
   "name": "@coofy/cool-cli",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "main": "index.js",
   "dependencies": {
     "@babel/core": "~7.3.3",

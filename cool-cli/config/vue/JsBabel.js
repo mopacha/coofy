@@ -3,15 +3,15 @@ exports.get = () => {
     plugins: [
       [
         '@babel/plugin-transform-runtime',
-        {
-          corejs: false,
-          helpers: true,
-          regenerator: false,
-          useESModules: true
-        }
+        // {
+        //   corejs: false,
+        //   helpers: true,
+        //   regenerator: false,
+        //   useESModules: true
+        // }
       ],
       ['@babel/plugin-syntax-dynamic-import'],
-      ['dynamic-import-node'],
+     // ['dynamic-import-node'],
       [
         'component',
         {
