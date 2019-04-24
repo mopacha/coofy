@@ -25,8 +25,7 @@ exports._default = function(env) {
 		path: path.join(process.cwd(), './dist/'),
 		filename: '[name].js',
 		chunkFilename: '[name].js',
-		//chunkFilename: '[id].chunk.js',
-		// sourceMapFilename: '[name].js.map'
+		sourceMapFilename: '[name].js.map',
 		publicPath: `${staticPublicPath}/`
 	}
 
