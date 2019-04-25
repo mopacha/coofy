@@ -1,5 +1,5 @@
-var gulp = require('gulp')
-var clean = require('gulp-clean')
+const gulp = require('gulp')
+const clean = require('gulp-clean')
 
 module.exports = config => {
   gulp.task('clean', function () {

@@ -1,6 +1,6 @@
 const path = require('path')
 
-const tasks = ['clean', 'pkStatic', 'babelNode', 'pkNode']
+const tasks = ['clean', 'build', 'addHash', 'pkStatic', 'babelNode', 'pkNode']
 
 module.exports = config => {
   config = Object.assign(
