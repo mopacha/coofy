@@ -3,8 +3,8 @@ const RevAll = require('gulp-rev-all')
 module.exports = config => {
 	
 	const REV_OPTIONS = {
-		hashLength: 6,
-		dontRenameFile: ['.art'],
+		hashLength: 8,
+		dontRenameFile:['.art', '.css', /^(?!runtime)-*$/g],
 		dontUpdateReference: ['.art']
 	}
 	gulp.task('addHash', gulp.series('build', function () {
