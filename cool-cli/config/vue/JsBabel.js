@@ -11,7 +11,7 @@ exports.get = () => {
         // }
       ],
       ['@babel/plugin-syntax-dynamic-import'],
-      ['dynamic-import-node'],
+      //['dynamic-import-node'],
       [
         'component',
         {
