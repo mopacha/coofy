@@ -22,7 +22,7 @@ module.exports = config => {
 
   gulp.task('copyConfig', function () {
     return gulp
-      .src(['package.json', 'process.json'], {
+      .src(['package.json', 'process.json', 'config/**/*.json'], {
         base: './'
       })
       .pipe(gulp.dest(DEST))
