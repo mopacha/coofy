@@ -24,7 +24,7 @@ exports._default = function(env) {
 	const output = {
 		path: path.join(process.cwd(), './dist/'),
 		filename: '[name].js',
-		chunkFilename: env === 'production' ? '[name].[chunkhash:8].js' : '[name].js',
+		chunkFilename: '[name].js',
 		sourceMapFilename: '[name].js.map',
 		publicPath: `${staticPublicPath}/`
 	}
@@ -55,8 +55,7 @@ exports._default = function(env) {
 
 		new MiniCssExtractPlugin({
 			filename: '[name].css',
-			chunkFilename:
-				env === 'production' ? '[name].[chunkhash:8].css' : '[name].css'
+			chunkFilename: '[name].css'
 		})
 	]
 
