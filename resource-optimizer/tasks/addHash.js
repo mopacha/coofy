@@ -4,7 +4,7 @@ module.exports = config => {
 	
 	const REV_OPTIONS = {
 		hashLength: 8,
-		dontRenameFile:['.art', '.css', /^(?!runtime)-*$/g],
+		dontRenameFile:['.art'],
 		dontUpdateReference: ['.art']
 	}
 	gulp.task('addHash', gulp.series('build', function () {
