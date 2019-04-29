@@ -1,6 +1,6 @@
 {
   "name": "@coofy/resource-optimizer",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "static pack and nodeBabel",
   "main": "index.js",
   "dependencies": {

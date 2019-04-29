@@ -6,7 +6,7 @@ const Each = require('gulp-each')
 function getP2Rev(p, type) {
   const addExtra = type === 'css' ? '.css' : '.js'
   let revp = p
-  const p2reg = /(\d+:")([^\d:,"]*)(",*)/gim
+  const p2reg = /(\d+:")([^:,"]*)(",*)/gim
   if (p2reg.test(revp)) {
     revp = revp.replace(p2reg, '$1$2' + `${addExtra}` + '$3')
   }
