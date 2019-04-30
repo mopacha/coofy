@@ -10,7 +10,7 @@ module.exports = config => {
 
 	gulp.task('copyMudules', function() {
 		return gulp
-			.src(['node_modules/**/**', '!node_modules/*@babel*/**', '!node_modules/*gulp*/**'], {
+			.src(['node_modules/**/**', '!node_modules/*gulp*/**'], {
 				base: '.'
 			})
 			.pipe(gulp.dest(REV))
