@@ -1,41 +1,51 @@
 const gulp = require('gulp')
 const path = require('path')
 const pkg = require(path.resolve(process.cwd(), './package.json'))
+const zip = require('gulp-zip')
+const rename = require('gulp-rename')
 
 module.exports = config => {
-  const DEST = `build/deploy/${pkg.name.replace(/-web$/, '') + '-node'}`
-  gulp.task('copyMudules', function () {
-    return gulp
-      .src(['node_modules/**'], {
-        base: './'
-      })
-      .pipe(gulp.dest(DEST))
-  })
+	const zipName = pkg.name.replace(/-web$/, '') + '-node'
+	const REV = 'build/rev/node'
 
-  gulp.task('copyView', function () {
-    return gulp
-      .src(['build/rev/static/src/view/**'], {
-        base: 'build/rev/static/'
-      })
-      .pipe(gulp.dest(DEST))
-  })
-
-  gulp.task('copyConfig', function () {
-    return gulp
-      .src(['package.json', 'process.json', 'config/**/*.json'], {
-        base: './'
-      })
-      .pipe(gulp.dest(DEST))
+	gulp.task('copyMudules', function() {
+		return gulp
+			.src(['node_modules/!(_@babel|_gulp|@babel|gulp)*/**'], {
+				base: './'
+			})
+			.pipe(gulp.dest(REV))
 	})
 
-	gulp.task('src', function () {
-    return gulp
-      .src(['build/rev/node/**'])
-      .pipe(gulp.dest(DEST))
-  })
+	gulp.task('copyView', function() {
+		return gulp
+			.src(['build/rev/static/src/view/**'], {
+				base: 'build/rev/static/'
+			})
+			.pipe(gulp.dest(REV))
+	})
 
-  gulp.task(
-    'pkNode',
-    gulp.parallel('copyView', 'copyMudules', 'copyConfig', 'src')
-  )
+	gulp.task('copyConfig', function() {
+		return gulp
+			.src(['package.json', 'process.json', 'config/**/*.json'], {
+				base: './'
+			})
+			.pipe(gulp.dest(REV))
+	})
+
+	gulp.task('copy', gulp.parallel('copyMudules', 'copyView', 'copyConfig'))
+
+	gulp.task(
+		'pkNode',
+		gulp.series('copy', function() {
+			return gulp
+				.src([`${REV}/**`])
+				.pipe(
+					rename(function(path) {
+						path.dirname = `${zipName}/${path.dirname}`
+					})
+				)
+				.pipe(zip(zipName + '.zip'))
+				.pipe(gulp.dest(`build/deploy`))
+		})
+	)
 }

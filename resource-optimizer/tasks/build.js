@@ -45,7 +45,7 @@ function revContent(content) {
 module.exports = config => {
   const DEST = config.STATIC_BUILD_PATH
 
-  gulp.task('re-content', function () {
+  gulp.task('rev-content', function () {
     return gulp
       .src(['dist/**/runtime*.js'])
       .pipe(
@@ -100,7 +100,7 @@ module.exports = config => {
       'min-image',
       'min-fonts',
       'copy-view',
-      're-content'
+      'rev-content'
     )
   )
 }
