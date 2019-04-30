@@ -7,7 +7,7 @@ const printLogo = () => {
 	console.log(
 		chalk.blue(
 			figlet.textSync('cooL', {
-				font: 'slant',
+				font: 'Slant',
 				horizontalLayout: 'full',
 				verticalLayout: 'full'
 			})
