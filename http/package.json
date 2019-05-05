@@ -1,14 +1,19 @@
 {
   "name": "@coofy/http",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
-  "main": "index.js",
+	"main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+		"pre": "rm -rf lib && babel src --out-dir lib"
   },
   "author": "moofyu@163.com",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.18.0"
+		"@babel/cli": "^7.4.3",
+		"@babel/core": "~7.3.3",
+		"axios": "^0.18.0",
+		"@babel/plugin-transform-runtime": "~7.3.4",
+		"@babel/preset-env": "~7.3.1",
+		"@babel/runtime": "~7.3.4"
   }
 }
