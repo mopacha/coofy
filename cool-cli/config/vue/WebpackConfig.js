@@ -30,14 +30,11 @@ exports._default = function(env) {
 	}
 
 	const AUTOPREFIXER_BROWSERS = [
-		// 'Android 2.3',
-		// 'Android >= 4',
-		// 'iOS >= 6',
 		'Chrome >= 35',
-		'Firefox >= 31',
-		'Explorer >= 9',
-		'Opera >= 12',
-		'Safari >= 7.1'
+    'Firefox >= 31',
+    'Explorer >= 8',
+    'Opera >= 12',
+    'Safari >= 7.1'
 	]
 
 	const GLOBALS = {
