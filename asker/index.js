@@ -2,37 +2,46 @@
 const axios = require('axios')
 
 axios.interceptors.response.use(
-  response => {
-    return Promise.resolve(response)
-  },
-  error => {
-    return Promise.reject(error.response)
-  }
+	response => {
+		return Promise.resolve(response)
+	},
+	error => {
+		return Promise.reject(error.response)
+	}
 )
 
 let Asker = {}
 Asker.request = async options => {
-  options.headers = Object.assign(
-    { 'Content-Type': 'application/json;charset=utf-8' },
-    options.headers
-  )
-  return await axios(options)
-    .then(function (res) {
-      options.ctx.log.debug(res.data)
-      return res.data
-    })
-    .catch(function (err) {
-      options.ctx.log.error(err.status)
-      return { status: err.status }
-    })
+	options.headers = Object.assign(
+		{ 'Content-Type': 'application/json;charset=utf-8' },
+		options.headers
+	)
+	return await axios(options)
+		.then(function(res) {
+			options.ctx.log.debug(res.data)
+			return Object.assign({ status: 200 }, res.data)
+		})
+		.catch(function(err) {
+			let error = err || {}
+			if (!err) {
+				error.status = 500
+			}
+			options.ctx.log.error(error.status)
+			const { status, data, statusText } = error
+			return {
+				status,
+				data,
+				statusText
+			}
+		})
 }
 
 Asker.get = async options => {
-  return await Asker.request(Object.assign({ method: 'get' }, options))
+	return Asker.request(Object.assign({ method: 'get' }, options))
 }
 
 Asker.post = async options => {
-  return await Asker.request(Object.assign({ method: 'post' }, options))
+	return Asker.request(Object.assign({ method: 'post' }, options))
 }
 
 module.exports = Asker
