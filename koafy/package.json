@@ -8,7 +8,7 @@
 	},
 	"author": "",
 	"dependencies": {
-		"@coofy/asker": "^1.0.3",
+		"@coofy/asker": "^1.0.4",
 		"@coofy/config": "^1.0.0",
 		"@coofy/matcher": "^1.0.1",
 		"art-template": "^4.13.2",
