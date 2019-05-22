@@ -19,7 +19,7 @@ Asker.request = async options => {
 	return await axios(options)
 		.then(function(res) {
 			options.ctx.log.info(res.data)
-			return Object.assign({ status: 200 }, res.data)
+			return res.data
 		})
 		.catch(function(err) {
 			let error = err || {}
