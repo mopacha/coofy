@@ -1,8 +1,6 @@
 "use strict";
 
-let logger = require('../utils/logger')('koafy-run');
-
-logger.level = 'debug';
+let logger = require('../utils/logger')('koafy/mi');
 
 module.exports = async app => {
   app.context.logger = logger;

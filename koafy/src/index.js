@@ -4,7 +4,7 @@ const address = require('ip').address()
 const printLogo = require('./utils/printLogo')
 
 const getConfig = filePath => {
-	logger.info('get config from', filePath)
+	logger.debug('get config from', filePath)
 	let config
 	try {
 		config = require(path.join(process.cwd(), filePath))
