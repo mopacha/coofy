@@ -18,7 +18,7 @@ Asker.request = async options => {
 	)
 	return await axios(options)
 		.then(function(res) {
-			options.ctx.log.debug(res.data)
+			options.ctx.log.info(res.data)
 			return Object.assign({ status: 200 }, res.data)
 		})
 		.catch(function(err) {
@@ -26,13 +26,14 @@ Asker.request = async options => {
 			if (!err) {
 				error.status = 500
 			}
-			options.ctx.log.error(error.status)
 			const { status, data, statusText } = error
-			return {
+			const resError = {
 				status,
 				data,
 				statusText
 			}
+			options.ctx.log.error(resError)
+			return resError
 		})
 }
 
