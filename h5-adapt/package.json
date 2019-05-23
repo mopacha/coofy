@@ -1,0 +1,14 @@
+{
+  "name": "h5-adapt",
+  "version": "1.0.0",
+  "description": "rem adapt for h5",
+  "main": "index.min.js",
+  "scripts": {
+		"pre": "uglifyjs index.js -o index.min.js -c -m"
+  },
+  "author": "moofyu@163.com",
+  "license": "ISC",
+  "devDependencies": {
+    "uglify-js": "^3.5.15"
+  }
+}
