@@ -1,5 +1,5 @@
 {
-  "name": "h5-adapt",
+  "name": "@coofy/h5-adapt",
   "version": "1.0.0",
   "description": "rem adapt for h5",
   "main": "index.min.js",
