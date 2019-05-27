@@ -11,6 +11,7 @@ exports.get = () => {
 				// }
 			],
 			['@babel/plugin-syntax-dynamic-import'],
+			['transform-vue-jsx'],
 			//['dynamic-import-node'],
 			[
 				'component',
