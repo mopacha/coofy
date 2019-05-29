@@ -123,7 +123,9 @@ exports._default = function(env) {
 		alias: {
 			vue: 'vue/dist/vue.esm.js',
 			'@static': srcPath('static'),
-			'@': srcPath('')
+			'@': srcPath(''),
+			'@common': srcPath('static/common'),
+			'#':srcPath('static/apps'),
 		}
 	}
 	const optimization = {
