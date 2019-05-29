@@ -1,15 +1,20 @@
 exports.get = () => {
 	return {
-		plugins: [
+		presets: [
 			[
-				'@babel/plugin-transform-runtime'
-				// {
-				//   corejs: false,
-				//   helpers: true,
-				//   regenerator: false,
-				//   useESModules: true
-				// }
-			],
+				'@babel/preset-env',
+				{
+					targets: {
+						browsers: ['last 2 versions', 'ie >= 9']
+					},
+					modules: false,
+					useBuiltIns: 'entry',
+					debug: true
+				}
+			]
+		],
+		plugins: [
+			['@babel/plugin-transform-runtime'],
 			['@babel/plugin-syntax-dynamic-import'],
 			['transform-vue-jsx'],
 			//['dynamic-import-node'],
@@ -18,19 +23,6 @@ exports.get = () => {
 				{
 					libraryName: 'element-ui',
 					styleLibraryName: 'theme-chalk'
-				}
-			]
-		],
-		presets: [
-			[
-				'@babel/preset-env',
-				{
-					targets: {
-						browsers: ['last 2 versions', 'ie >= 8']
-					},
-					modules: false,
-					useBuiltIns: 'usage',
-					debug: false
 				}
 			]
 		]
