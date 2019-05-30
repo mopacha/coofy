@@ -31,10 +31,10 @@ exports._default = function(env) {
 
 	const AUTOPREFIXER_BROWSERS = [
 		'Chrome >= 35',
-    'Firefox >= 31',
-    'Explorer >= 8',
-    'Opera >= 12',
-    'Safari >= 7.1'
+		'Firefox >= 31',
+		'Explorer >= 8',
+		'Opera >= 12',
+		'Safari >= 7.1'
 	]
 
 	const GLOBALS = {
@@ -122,10 +122,12 @@ exports._default = function(env) {
 		modules: [path.resolve('./src/static/'), path.resolve('./node_modules/')],
 		alias: {
 			vue: 'vue/dist/vue.esm.js',
-			'@static': srcPath('static'),
 			'@': srcPath(''),
+			'@static': srcPath('static'),
+			'#': srcPath('static/apps'),
 			'@common': srcPath('static/common'),
-			'#':srcPath('static/apps'),
+			'@utils': srcPath('static/common/utils'),
+			'@components': srcPath('static/common/components')
 		}
 	}
 	const optimization = {
