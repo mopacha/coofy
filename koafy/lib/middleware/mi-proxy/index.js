@@ -21,7 +21,7 @@ module.exports = options => {
       const data = await Asker.request({
         headers: {
           'Content-Type': headers['content-type'] || 'application/json;charset=utf-8',
-          'user_id': headers['user_id'] || ''
+          'userid': headers['userid'] || ''
         },
         ctx,
         baseURL: baseUrl,
