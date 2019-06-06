@@ -106,7 +106,7 @@ exports._default = function(env) {
 							ident: 'postcss',
 							plugins: [
 								require('autoprefixer')({
-									browsers: AUTOPREFIXER_BROWSERS
+									overrideBrowserslist: AUTOPREFIXER_BROWSERS
 								})
 							]
 						}
