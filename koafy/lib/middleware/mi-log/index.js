@@ -13,9 +13,9 @@ const log4jsConf = config.log4js;
 module.exports = () => {
   let contextLogger = {};
   let appName = config.appName;
+  log4js.configure(log4jsConf);
   return async (ctx, next) => {
     const start = Date.now();
-    log4js.configure(log4jsConf);
     const logger = log4js.getLogger(appName);
     methods.forEach(method => {
       contextLogger[method] = msg => {
