@@ -8,8 +8,8 @@ module.exports = (appConfig, routesPath) => {
   const app = new koa();
   mi.setContext(app);
   mi.logger(app);
-  mi.koaBody(app);
   mi.koaStatic(app);
+  mi.koaBody(app);
   mi.view(app, appConfig); //透传
 
   mi.proxy(app, appConfig);
