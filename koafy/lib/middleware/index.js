@@ -6,6 +6,8 @@ const logger = require('./logger');
 
 const koaBody = require('./koa-body');
 
+const koaStatic = require('./koa-static');
+
 const view = require('./view');
 
 const proxy = require('./proxy');
@@ -16,6 +18,7 @@ module.exports = {
   setContext,
   logger,
   koaBody,
+  koaStatic,
   view,
   proxy,
   router

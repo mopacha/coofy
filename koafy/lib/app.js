@@ -9,6 +9,7 @@ module.exports = (appConfig, routesPath) => {
   mi.setContext(app);
   mi.logger(app);
   mi.koaBody(app);
+  mi.koaStatic(app);
   mi.view(app, appConfig); //透传
 
   mi.proxy(app, appConfig);

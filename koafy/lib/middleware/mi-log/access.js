@@ -2,14 +2,14 @@
 
 module.exports = (ctx, message, commonInfo) => {
   const {
-    method,
     url,
+    method,
     host,
     headers
   } = ctx.request;
   const client = {
-    method,
     url,
+    method,
     host,
     message,
     referer: headers['referer'],
