@@ -6,23 +6,27 @@ module.exports = options => {
     const { baseUrl, patterns } = options
     const { url, method, headers, body } = ctx.request
 
-    if (matcher.match(patterns, url)) {
-      const data =  await Asker.request({
-        headers: {
-          'Content-Type': headers['content-type'],
-          'token': headers['token'],
-          'Cookie': headers['cookie']
-				},
-        ctx,
-        baseURL: baseUrl,
-        url,
-        method: method.toLowerCase(),
-        data: body
-			}, ctx.log)
+    const token = headers['token'] ? { 'token': headers['token'] } : {}
+    const cookie = headers['cookie'] ? { 'Cookie': headers['cookie'] } : {}
 
-			ctx.body = data
+    if (matcher.match(patterns, url)) {
+      const data = await Asker.request(
+        {
+          headers: {
+            'Content-Type': headers['content-type'],
+            ...token,
+            ...cookie
+          },
+          baseURL: baseUrl,
+          url,
+          method: method.toLowerCase(),
+          data: body
+        },
+        ctx.log
+      )
+      ctx.body = data
     } else {
-			await next()
+      await next()
     }
   }
 }
