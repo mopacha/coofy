@@ -11,14 +11,14 @@ axios.interceptors.response.use(
 )
 
 let Asker = {}
-Asker.request = async options => {
+Asker.request = async (options, log) => {
 	options.headers = Object.assign(
 		{ 'Content-Type': 'application/json;charset=utf-8' },
 		options.headers
 	)
 	return await axios(options)
 		.then(function(res) {
-			options.ctx.log.info(res.data)
+			log.info(res.data)
 			return res.data
 		})
 		.catch(function(err) {
@@ -32,7 +32,12 @@ Asker.request = async options => {
 				data,
 				statusText
 			}
-			options.ctx.log.error(resError)
+			
+			log.error({
+				Ask: options,
+				Response: resError
+			})
+
 			return resError
 		})
 }

@@ -9,15 +9,16 @@ module.exports = options => {
     if (matcher.match(patterns, url)) {
       const data =  await Asker.request({
         headers: {
-					'Content-Type': headers['content-type'] || 'application/json;charset=utf-8',
-					'userid': headers['userid'] || ''
+          'Content-Type': headers['content-type'],
+          'token': headers['token'],
+          'Cookie': headers['cookie']
 				},
         ctx,
         baseURL: baseUrl,
         url,
         method: method.toLowerCase(),
         data: body
-			})
+			}, ctx.log)
 
 			ctx.body = data
     } else {
