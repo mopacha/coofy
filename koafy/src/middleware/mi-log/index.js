@@ -3,15 +3,15 @@ const config = require('@coofy/config')
 
 const methods = ['trace', 'debug', 'info', 'warn', 'error', 'fatal', 'mark']
 const access = require('./access')
-const log4jsConf= config.log4js
+const log4jsConf = config.log4js
 
 module.exports = () => {
-	let contextLogger = {}
+  let contextLogger = {}
   let appName = config.appName
   log4js.configure(log4jsConf)
   return async (ctx, next) => {
     const start = Date.now()
-		const logger = log4js.getLogger(appName)
+    const logger = log4js.getLogger(appName)
     methods.forEach(method => {
       contextLogger[method] = msg => {
         logger[method](access(ctx, msg, {}))
