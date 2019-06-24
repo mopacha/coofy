@@ -42,7 +42,7 @@ const webpackConfig = env => {
       filename: '[name].js',
       chunkFilename: '[name].js',
       path: path.join(process.cwd(), './dist/'),
-      publicPath: isProd ? `${staticPublicPath}/` : '/'
+      publicPath: `${staticPublicPath}/`
     },
     resolve: {
       extensions: ['.js', '.vue', '.scss', '.json'],
