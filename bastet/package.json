@@ -11,7 +11,7 @@
     "@coofy/asker": "^1.0.4",
     "@coofy/config": "^1.0.0",
     "@coofy/matcher": "^1.0.1",
-    "@coofy/webpack": "^1.0.2",
+    "@coofy/webpack": "^1.0.3",
     "art-template": "^4.13.2",
     "chalk": "^2.4.2",
     "figlet": "^1.2.1",
