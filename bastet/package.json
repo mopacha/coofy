@@ -1,0 +1,38 @@
+{
+  "name": "@coofy/bastet",
+  "version": "0.0.1",
+  "description": "",
+  "main": "lib/index.js",
+  "scripts": {
+    "pre": "rm -rf lib && babel src --out-dir lib"
+  },
+  "author": "",
+  "dependencies": {
+    "@coofy/asker": "^1.0.4",
+    "@coofy/config": "^1.0.0",
+    "@coofy/matcher": "^1.0.1",
+    "@coofy/webpack": "^1.0.2",
+    "art-template": "^4.13.2",
+    "chalk": "^2.4.2",
+    "figlet": "^1.2.1",
+    "glob": "^7.1.3",
+    "ip": "^1.1.5",
+    "koa": "^2.7.0",
+    "koa-art-template": "^1.1.1",
+    "koa-body": "^4.1.0",
+    "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0",
+    "koa-webpack": "^5.2.3",
+    "log4js": "^4.0.2",
+    "ramda": "^0.26.1"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.4.3",
+    "@babel/core": "~7.3.3",
+    "@babel/plugin-proposal-decorators": "~7.4.0",
+    "@babel/plugin-transform-runtime": "~7.3.4",
+    "@babel/preset-env": "~7.3.1",
+    "@babel/runtime": "~7.3.4"
+  }
+}
