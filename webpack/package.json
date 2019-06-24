@@ -1,6 +1,6 @@
 {
   "name": "@coofy/webpack",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -9,6 +9,7 @@
   "author": "moofyu@163.com",
   "license": "ISC",
   "dependencies": {
+    "acorn": "^6.1.1",
     "autoprefixer": "^9.6.0",
     "css-loader": "^3.0.0",
     "mini-css-extract-plugin": "^0.7.0",
@@ -20,6 +21,7 @@
     "time-fix-plugin": "^2.0.6",
     "url-loader": "^2.0.0",
     "vue-loader": "^15.7.0",
+    "vue-template-compiler": "^2.6.10",
     "webpack": "^4.35.0"
   }
 }

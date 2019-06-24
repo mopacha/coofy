@@ -19,13 +19,13 @@ const BabelConfig = require('./JsBabel')
 const staticPublicPath = require(path.join(process.cwd(), './src/app.config'))
   .staticUrl
 
+const coolConfig  = require('./coolConfig')()
  
 function srcPath(dir) {
   return path.join(process.cwd(), './src', dir)
 }
 
 const webpackConfig = env => {
-
   const isProd = env === 'production'
   const AUTOPREFIXER_BROWSERS = [
     'Chrome >= 35',
@@ -35,7 +35,7 @@ const webpackConfig = env => {
     'Safari >= 7.1'
   ]
 
-  const config ={
+  let config ={
     entry: {},
     mode: env,
     output: {
@@ -183,6 +183,9 @@ const webpackConfig = env => {
       new ProgressBarPlugin()
     ])
   }
+
+
+  config = coolConfig.webpack(config)
   
   return config
 }

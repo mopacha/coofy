@@ -1,6 +1,5 @@
 
-
-import vspa from './vspa'
+const vspa = require('./vspa/index')
 
 module.exports = {
     vspa

@@ -16,7 +16,7 @@ exports.get = () => {
 		plugins: [
 			['@babel/plugin-transform-runtime'],
 			['@babel/plugin-syntax-dynamic-import'],
-			['transform-vue-jsx']
+			['transform-vue-jsx'],
 			[
 				'component',
 				{
