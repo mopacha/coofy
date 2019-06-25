@@ -10,6 +10,8 @@ const print = require('./utils/print');
 
 const symbols = require('log-symbols');
 
+const chalk = require('chalk');
+
 const getConfig = filePath => {
   logger.debug('get config from', filePath);
   let config;
