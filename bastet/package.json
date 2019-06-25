@@ -1,6 +1,6 @@
 {
   "name": "@coofy/bastet",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
@@ -23,6 +23,7 @@
     "koa-router": "^7.4.0",
     "koa-static": "^5.0.0",
     "koa-webpack": "^5.2.3",
+    "log-symbols": "^3.0.0",
     "log4js": "^4.0.2",
     "ramda": "^0.26.1"
   },

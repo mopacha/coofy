@@ -1,7 +1,8 @@
 const logger = require('./utils/logger')('koafy/index.js')
 const path = require('path')
 const address = require('ip').address()
-const printLogo = require('./utils/printLogo')
+const print = require('./utils/print');
+const symbols = require('log-symbols')
 
 const getConfig = filePath => {
 	logger.debug('get config from', filePath)
@@ -31,9 +32,9 @@ const start = (options = { baseDir: './src' }) => {
 	const port = process.env.PORT || 3000
 
 	app.listen(port, () => {
-		app.context.logger.info(`mode: ${process.env.NODE_ENV}`)
-		printLogo()
-		console.log(`server on: http://${address}:${port}`)
+		print.cool()
+		console.log(symbols.success, chalk.green(`${process.env.NODE_ENV} server on: http://${address}:${port}\n`))
+		console.log(symbols.info, chalk.green('等待 webpack 编译中，请稍候......\n'))
 	})
 }
 

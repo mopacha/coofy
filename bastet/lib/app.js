@@ -10,14 +10,9 @@ module.exports = (appConfig, routesPath) => {
   mi.logger(app);
   mi.koaStatic(app);
   mi.koaBody(app);
-  mi.view(app, appConfig); //透传
-
+  mi.view(app, appConfig);
   mi.proxy(app, appConfig);
-
-  if (process.env.NODE_ENV === 'development') {
-    mi.webpack(app);
-  }
-
+  mi.webpack(app);
   mi.router(app, routesPath);
   return app;
 };

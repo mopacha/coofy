@@ -5,19 +5,21 @@ const koaWebpack = require('koa-webpack');
 const webpackConfig = require('@coofy/webpack').vspa(process.env.NODE_ENV);
 
 module.exports = async app => {
-  await koaWebpack({
-    config: webpackConfig,
-    devMiddleware: {
-      stats: 'minimal',
-      headers: {
-        'Access-Control-Allow-Origin': '*'
+  if (process.env.NODE_ENV === 'development') {
+    koaWebpack({
+      config: webpackConfig,
+      devMiddleware: {
+        stats: 'minimal',
+        headers: {
+          'Access-Control-Allow-Origin': '*'
+        }
+      },
+      hotClient: {
+        logLevel: 'silent',
+        allEntries: true
       }
-    },
-    hotClient: {
-      allEntries: true
-    }
-  }).then(middleware => {
-    app.use(middleware);
-    app.context.logger.info('webpack.... ');
-  });
+    }).then(middleware => {
+      app.use(middleware);
+    });
+  }
 };
