@@ -43,8 +43,8 @@ const start = (options = {
   const app = create(options);
   const port = process.env.PORT || 3000;
   app.listen(port, () => {
-    print.cool();
-    console.log(symbols.success, chalk.green(`${process.env.NODE_ENV} server on: http://${address}:${port}\n`));
+    print.bastet();
+    console.log(symbols.success, chalk.green(`\n${process.env.NODE_ENV} server on: http://${address}:${port}`));
     console.log(symbols.info, chalk.green('等待 webpack 编译中，请稍候......\n'));
   });
 };
