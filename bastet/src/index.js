@@ -1,9 +1,6 @@
-const logger = require('./utils/logger')('koafy/index.js')
+const logger = require('./utils/logger')('bastet/index.js')
 const path = require('path')
-const address = require('ip').address()
-const print = require('./utils/print');
-const symbols = require('log-symbols')
-const chalk = require('chalk')
+const ENV = process.env.NODE_ENV
 
 const getConfig = filePath => {
 	logger.debug('get config from', filePath)
@@ -17,29 +14,19 @@ const getConfig = filePath => {
 	return config
 }
 
-const create = options => {
+const start = (options = { baseDir: './src' }) => {
 	const coolConfig = require('./config/coolConfig')
 	const appConfig = getConfig(`${options.baseDir}/${coolConfig.appConfigPath}`)
-	const routesPath = path.join(
-		process.cwd(),
-		`${options.baseDir}/${coolConfig.routesPath}`
-	)
-	const app = require('./app')(appConfig, routesPath)
-	return app
-}
-
-const start = (options = { baseDir: './src' }) => {
-	const app = create(options)
-	const port = process.env.PORT || 3000
-
-	app.listen(port, () => {
-		print.bastet()
-		console.log(symbols.success, chalk.green(`${process.env.NODE_ENV} server on: http://${address}:${port}`))
-		console.log(symbols.info, chalk.green('等待 webpack 编译中，请稍候......\n'))
-	})
+	const routesPath = path.join(process.cwd(), `${options.baseDir}/${coolConfig.routesPath}`)
+	if(ENV === 'development') {
+		require('./server/index.dev')(appConfig, routesPath)
+	} else {
+		require('./server/index.prod')(appConfig, routesPath)
+	}
 }
 
 const router = require('./decorator/router')
+
 module.exports = {
 	start,
 	router
