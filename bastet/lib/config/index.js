@@ -5,5 +5,6 @@
  */
 module.exports = {
   appConfigPath: 'app.config.js',
-  routesPath: 'controller'
+  routesPath: 'controller',
+  coolConfigPath: 'cool.config.js'
 };

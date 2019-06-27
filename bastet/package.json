@@ -1,6 +1,6 @@
 {
   "name": "@coofy/bastet",
-  "version": "0.0.8",
+  "version": "0.0.12",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
@@ -34,6 +34,8 @@
     "@babel/plugin-proposal-decorators": "~7.4.0",
     "@babel/plugin-transform-runtime": "~7.3.4",
     "@babel/preset-env": "~7.3.1",
-    "@babel/runtime": "~7.3.4"
+    "@babel/runtime": "~7.3.4",
+    "chokidar": "^3.0.1",
+    "cluster": "^0.7.7"
   }
 }
