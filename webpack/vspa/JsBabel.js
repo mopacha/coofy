@@ -9,6 +9,7 @@ exports.get = () => {
 					},
 					modules: false,
 					useBuiltIns: 'entry',
+					corejs: '2',
 					debug: false
 				}
 			]
