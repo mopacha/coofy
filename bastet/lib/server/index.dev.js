@@ -37,7 +37,7 @@ const webpackConfig = require('@coofy/webpack').vspa(process.env.NODE_ENV);
 const staticPath = './public';
 const root = path.join(process.cwd(), './src/view');
 
-const bastetConfig = require('./config');
+const bastetConfig = require('../config/index');
 
 const getConfig = require('../utils/getConfig');
 
@@ -45,19 +45,19 @@ const resolve = dir => {
   return path.join(process.cwd(), dir);
 };
 
-const WEBPACK_PORT = getConfig(bastetConfig.coolConfigPath) || 9999;
-const KOA_PORT = process.env.PORT || 3000;
 const app = new koa();
 
-const webpackServer = async () => {
-  await registerWebpack();
+const webpackServer = () => {
+  const WEBPACK_PORT = getConfig(bastetConfig.coolConfigPath).devServer.port || 9999;
+  registerWebpack();
   watchDir();
   app.listen(WEBPACK_PORT);
-  console.log(symbols.info, chalk.green('等待 webpack 编译中，请稍候......\n'));
+  console.log(symbols.info, chalk.green('webpack compiling, please wait......\n'));
 };
 
 const koaServer = (appConfig, routesPath) => {
-  console.log(symbols.info, chalk.green('koa服务启动中，请稍后......\n'));
+  console.log(symbols.info, chalk.green('koa server begin to start......\n'));
+  const KOA_PORT = process.env.PORT || 3000;
   app.context.logger = logger;
   app.use(mi.miLog());
   app.use(serve(path.join(process.cwd(), staticPath)));
@@ -90,7 +90,7 @@ const koaServer = (appConfig, routesPath) => {
   new Route(app, routesPath).init();
   app.listen(KOA_PORT, () => {
     print.bastet();
-    console.log(symbols.success, chalk.green(`${process.env.NODE_ENV} server on: http://${address}:${KOA_PORT}`));
+    console.log(symbols.success, chalk.green(`server on: http://${address}:${KOA_PORT}`));
   });
 };
 
@@ -130,7 +130,11 @@ function watchDir() {
   const watchConfig = {
     dir: [resolve('src'), resolve('cool.config.js'), resolve('public'), resolve('config')],
     options: {
-      ignored: resolve('./src/static')
+      ignored: resolve('./src/static'),
+      awaitWriteFinish: {
+        stabilityThreshold: 500,
+        pollInterval: 500
+      }
     }
   };
   chokidar.watch(watchConfig.dir, watchConfig.options).on('change', filePath => {

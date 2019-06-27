@@ -17,11 +17,11 @@ const mi = require('../middleware/index')
 const staticPath = './public'
 const root = path.join(process.cwd(), './src/view')
 
-const startKoa = (appConfig, routesPath) => {
+const start = (appConfig, routesPath) => {
+    console.log(symbols.info, chalk.green('koa server begin to start......\n'))
+    const KOA_PORT = process.env.PORT || 3000
     const app = new koa()
     app.context.logger = logger
-
-    logger.info('start server ......')
 
     app.use(mi.miLog())
     app.use(serve(path.join(process.cwd(), staticPath)))
@@ -50,12 +50,10 @@ const startKoa = (appConfig, routesPath) => {
 
     new Route(app, routesPath).init()
 
-    const port = process.env.PORT || 3000
-
-	app.listen(port, () => {
+	app.listen(KOA_PORT, () => {
 		print.bastet()
-        console.log(symbols.success, chalk.green(`${process.env.NODE_ENV} server on: http://${address}:${port}`))
+        console.log(symbols.success, chalk.green(`${process.env.NODE_ENV} server on: http://${address}:${KOA_PORT}`))
 	})
 }
 
-module.exports = startKoa
+module.exports = start

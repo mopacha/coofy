@@ -9,7 +9,7 @@ const ENV = process.env.NODE_ENV;
 const start = (options = {
   baseDir: './src'
 }) => {
-  const bastetConfig = require('./config');
+  const bastetConfig = require('./config/index');
 
   const appConfig = getConfig(`${options.baseDir}/${bastetConfig.appConfigPath}`);
   const routesPath = path.join(process.cwd(), `${options.baseDir}/${bastetConfig.routesPath}`);

@@ -3,7 +3,7 @@ const figlet = require('figlet')
 
 
 const bastet = () => {
-    console.log(chalk.blue("\n  ///,        ////\n  \\  /,      /  >.\n   \\  /,   _/  /.\n    \\_  /_/   /.\n     \\__/_   <\n     /<<< \\_\\_\n    /,)^>>_._ \\\n    (/   \\\\ /\\\\\\\n         // ````\n  ======((`======= @coofy/bastet\n"));
+    console.log(chalk.blue.bold("\n  ///,        ////\n  \\  /,      /  >.\n   \\  /,   _/  /.\n    \\_  /_/   /.\n     \\__/_   <\n     /<<< \\_\\_\n    /,)^>>_._ \\\n    (/   \\\\ /\\\\\\\n         // ````\n  ======((`======= @coofy/bastet\n"));
 }
 
 const cool = () => {
@@ -17,7 +17,6 @@ const cool = () => {
         )
     )
 }
-
 
 module.exports = {
     bastet,
