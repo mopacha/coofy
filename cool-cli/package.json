@@ -1,6 +1,6 @@
 {
   "name": "@coofy/cool-cli",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "main": "index.js",
   "dependencies": {
     "@coofy/load-git": "^1.0.0",
