@@ -25,9 +25,26 @@ const resolve = dir => {
 }
 const app = new koa()
 
-const webpackServer = () => {
+const webpackServer = async() => {
     const WEBPACK_PORT = getConfig(bastetConfig.coolConfigPath).devServer.port || 9999
-    registerWebpack()
+    const HOT = getConfig(bastetConfig.coolConfigPath).devServer.hot
+
+    const middleware = await koaWebpack({
+        config: webpackConfig,
+        devMiddleware: {
+            stats: 'minimal',
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            }
+        },
+        hotClient: HOT ? {
+            logLevel: 'silent',
+            allEntries: true
+        } : false
+    })
+
+    app.use(middleware)
+
     watchDir()
     app.listen(WEBPACK_PORT)
     console.log(symbols.info, chalk.green('webpack compiling, please wait......\n'))
@@ -63,7 +80,6 @@ const koaServer = (appConfig, routesPath) => {
     }
 
     new Route(app, routesPath).init()
-
     app.listen(KOA_PORT, () => {
         print.bastet()
         console.log(symbols.success, chalk.green(`server on: http://${address}:${KOA_PORT}`))
@@ -78,27 +94,6 @@ const start = (appConfig, routesPath) => {
     if (cluster.isWorker) {
         koaServer(appConfig, routesPath)
     }
-}
-
-function registerWebpack() {
-    return new Promise(resolve => {
-        koaWebpack({
-            config: webpackConfig,
-            devMiddleware: {
-                stats: 'minimal',
-                headers: {
-                    'Access-Control-Allow-Origin': '*'
-                }
-            },
-            hotClient: {
-                logLevel: 'silent',
-                allEntries: true
-            }
-        }).then(middleware => {
-            app.use(middleware)
-            resolve()
-        })
-    })
 }
 
 
@@ -119,10 +114,9 @@ function watchDir() {
         worker && worker.kill()
 
         worker = cluster.fork().on('listening', (address) => {
-            console.log(symbols.success, chalk.green(`[master] 监听: id ${worker.id}, pid:${worker.process.pid} ,地址:http://127.0.0.1:${address.port}`))
+            console.log(symbols.success, chalk.green(`[master] listening: id ${worker.id}, pid:${worker.process.pid} ,adress:http://127.0.0.1:${address.port}`))
         })
     })
 }
-
 
 module.exports = start
