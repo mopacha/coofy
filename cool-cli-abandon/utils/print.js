@@ -31,6 +31,7 @@ Options:
 	-h, --help     output usage information
 
 Commands:
+	start          start dev server
 	build          build project with webpack4
 	init           init project
 `

@@ -12,6 +12,7 @@ const handle = command => {
 
 const execute = () => {
 	switch (command) {
+		case 'start':
 		case 'build':
 		case 'init':
 			handle(command)

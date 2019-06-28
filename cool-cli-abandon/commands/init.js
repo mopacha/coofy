@@ -71,7 +71,7 @@ const init = () => {
 				type: 'list',
 				name: 'preset',
 				message: 'Which preset do you want ?',
-				choices: ['vue-pc', 'vue-h5', 'react']
+				choices: ['Vue-PC', 'Vue-H5', 'React']
 			},
 			{
 				type: 'input',
