@@ -114,7 +114,7 @@ function watchDir() {
         worker && worker.kill()
 
         worker = cluster.fork().on('listening', (address) => {
-            console.log(symbols.success, chalk.green(`[master] listening: id ${worker.id}, pid:${worker.process.pid} ,adress:http://127.0.0.1:${address.port}`))
+            console.log(symbols.success, chalk.green(`[master] listening: id ${worker.id}, pid:${worker.process.pid} ,address:http://127.0.0.1:${address.port}`))
         })
     })
 }
