@@ -5,8 +5,8 @@ let Path = require('path')
 module.exports = config => {
 	const REV_OPTIONS = {
 		hashLength: 8,
-		dontRenameFile: ['.art'],
-		dontUpdateReference: ['.art'],
+		dontRenameFile: ['.art', '.woff','.ttf'],
+		dontUpdateReference:  ['.art', '.woff','.ttf'],
 		referenceToRegexs: function referenceToRegexs(reference) {
 			let nonFileNameChar = '[^a-zA-Z0-9\\.\\-\\_\\/]'
 			let qoutes = '\'|"'

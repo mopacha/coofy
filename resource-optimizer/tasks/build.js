@@ -81,7 +81,7 @@ module.exports = config => {
   })
 
   gulp.task('min-fonts', function () {
-    return gulp.src('dist/**/*.{woff2,eot,ttf,otf}').pipe(gulp.dest(DEST))
+    return gulp.src('dist/**/*.{woff,woff2,eot,ttf,otf}').pipe(gulp.dest(DEST))
   })
 
   gulp.task('copy-view', function () {
