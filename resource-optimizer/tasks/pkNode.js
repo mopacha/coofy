@@ -31,7 +31,7 @@ module.exports = config => {
 			})
 			.pipe(gulp.dest(REV))
 	})
-	
+
 	gulp.task('copyStatic', function() {
 		return gulp
 		.src(['public/**'], {
@@ -42,7 +42,6 @@ module.exports = config => {
 
 	gulp.task('copy', gulp.parallel('copyMudules', 'copyView', 'copyConfig', 'copyStatic'))
 
-	gulp.task('copy', gulp.parallel('copyMudules', 'copyView', 'copyConfig'))
 
 	gulp.task(
 		'pkNode',
