@@ -1,0 +1,26 @@
+{
+  "name": "@coofy/orgchart",
+  "version": "0.0.1",
+	"description": "Ultimate Organizational Chart JavaScript library, Interactive Diagrams",
+	"main": "index.js",
+	"keywords": [
+    "diagram",
+    "chart",
+    "tree",
+    "orgchart",
+    "graph",
+    "svg",
+    "hierarchy",
+    "family-tree",
+    "decision-tree",
+    "visualization",
+    "tree-layout",
+    "hierarchical",
+    "javascript",
+    "js",
+    "html",
+    "html5"
+  ],
+  "author": "",
+	"license": "ISC"
+}
