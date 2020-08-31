@@ -10,10 +10,11 @@ const date = {
     }
 }
 
-const run = (start = '2020-08-31 13:00', end = '2020-08-31 24:00') => {
+const gray = (start='2020-08-31 13:00', end='2020-08-31 24:00') => {
     if (date.isDuringDate(start, end)) {
         document.documentElement.style.filter = "grayscale(100%)";
     }
 }
 
-export default run()
+
+export default gray

@@ -18,7 +18,7 @@ var date = {
   }
 };
 
-var run = function run() {
+var gray = function gray() {
   var start = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '2020-08-31 13:00';
   var end = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '2020-08-31 24:00';
 
@@ -27,6 +27,5 @@ var run = function run() {
   }
 };
 
-var _default = run();
-
+var _default = gray;
 exports["default"] = _default;
