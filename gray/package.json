@@ -1,0 +1,19 @@
+{
+  "name": "@coofy/gray",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.min.js",
+  "scripts": {
+    "pre": "rm -rf lib && babel index.js --out-dir lib",
+    "mini": "uglifyjs lib/index.js -o index.min.js -c -m"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.4",
+    "@babel/preset-env": "^7.11.0",
+    "pre": "^0.1.3",
+    "uglify-js": "^3.5.15"
+  }
+}
